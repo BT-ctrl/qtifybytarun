@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSwiper } from "swiper/react";
-import { ArrowForward } from "@mui/icons-material"; // Material-UI arrow forward icon
+import styles from "./CarouselRightNavigation.module.css";
+import { ReactComponent as RightArrow } from "../../../assets/RightArrow.svg";
 
-function CarouselRightNavigation() {
-  const swiper = useSwiper(); // Get Swiper instance
+export default function CarouselRightNavigation() {
+  const swiper = useSwiper();
+  const [isEnd, setIsEnd] = useState(swiper.isEnd);
+
+  // useEffect(() => {
+  //   swiper.on("slideChange", function () {
+  //     setIsEnd(swiper.isEnd);
+  //   });
+  // }, []);
+
+  swiper.on("slideChange", function () {
+    setIsEnd(swiper.isEnd);
+  });
 
   return (
-    <button
-      className="carousel-right-btn"
-      onClick={() => swiper.slideNext()} // Go to next slide
-    >
-      <ArrowForward />
-    </button>
+    <div className={styles.rightNavigation}>
+      {!isEnd && <RightArrow onClick={() => swiper.slideNext()} />}
+    </div>
   );
 }
-
-export default CarouselRightNavigation;

@@ -1,18 +1,25 @@
-import React from "react";
-import { useSwiper } from "swiper/react";
-import { ArrowBack } from "@mui/icons-material"; // Material-UI arrow back icon
+import React, { useEffect, useState } from "react";
+import { useSwiper, useSwiperSlide } from "swiper/react";
+import styles from "./CarouselLeftNavigation.module.css";
+import { ReactComponent as LeftArrow } from "../../../assets/LeftArrow.svg";
 
-function CarouselLeftNavigation() {
-  const swiper = useSwiper(); // Get Swiper instance
+export default function CarouselLeftNavigation() {
+  const swiper = useSwiper();
+  const [isBeginning, setIsBeginning] = useState(swiper.isBeginning);
+
+  // useEffect(() => {
+  //   // swiper.on("slideChange", function () {
+  //   //   setIsBeginning(swiper.isBeginning);
+  //   // });
+  // }, []);
+
+  swiper.on("slideChange", function () {
+    setIsBeginning(swiper.isBeginning);
+  });
 
   return (
-    <button
-      className="carousel-left-btn"
-      onClick={() => swiper.slidePrev()} // Go to previous slide
-    >
-      <ArrowBack />
-    </button>
+    <div className={styles.leftNavigation}>
+      {!isBeginning && <LeftArrow onClick={() => swiper.slidePrev()} />}
+    </div>
   );
 }
-
-export default CarouselLeftNavigation;
