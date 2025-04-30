@@ -1,6 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
 import Filters from "../Filters/Filters";
@@ -24,13 +23,14 @@ export default function Section({ title, data, filterSource, type }) {
     }
   }, []);
 
-  const showFilters = filters.length > 1; //true
+  const showFilters = filters.length > 1;
+
   const cardsToRender = data.filter((card) =>
     showFilters && selectedFilterIndex !== 0
       ? card.genre.key === filters[selectedFilterIndex].key
       : card
   );
-  console.log(data);
+
   return (
     <div>
       <div className={styles.header}>
@@ -39,6 +39,7 @@ export default function Section({ title, data, filterSource, type }) {
           {!carouselToggle ? "Collapse All" : "Show All"}
         </h4>
       </div>
+
       {showFilters && (
         <div className={styles.filterWrapper}>
           <Filters
@@ -48,19 +49,21 @@ export default function Section({ title, data, filterSource, type }) {
           />
         </div>
       )}
+
       {data.length === 0 ? (
         <CircularProgress />
       ) : (
         <div className={styles.cardsWrapper}>
           {!carouselToggle ? (
             <div className={styles.wrapper}>
-              {cardsToRender.map((ele) => (
-                <Card data={ele} type={type} />
+              {/* Render only the first 9 cards */}
+              {cardsToRender.slice(0, 9).map((ele, index) => (
+                <Card key={index} data={ele} type={type} />
               ))}
             </div>
           ) : (
             <Carousel
-              data={cardsToRender}
+              data={cardsToRender.slice(0, 9)} // Limit the carousel to 9 cards
               renderComponent={(data) => <Card data={data} type={type} />}
             />
           )}

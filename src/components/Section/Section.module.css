@@ -2,6 +2,7 @@
   display: flex;
   gap: 40px;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .header {
@@ -21,4 +22,41 @@
 
 .filterWrapper {
   margin-top: 15px;
+}
+
+.showMoreButton {
+  padding: 10px 20px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.showMoreButton:hover {
+  background-color: #005bb5;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    gap: 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .showMoreButton {
+    max-width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
