@@ -1,33 +1,19 @@
 .wrapper {
   position: relative;
-  width: 100%;
-  padding: 0 20px;
 }
 
-.carousel-left-btn,
-.carousel-right-btn {
+.leftNavigation {
   position: absolute;
-  top: 50%;
+  left: -10px;
+  top: 40%;
+  transform: translateY(-50%);
   z-index: 10;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #1db954; /* Green color for buttons */
-  font-size: 30px;
 }
 
-.carousel-left-btn {
-  left: 0;
+.rightNavigation {
+  position: absolute;
+  right: 10px;
+  top: 40%;
   transform: translateY(-50%);
-}
-
-.carousel-right-btn {
-  right: 0;
-  transform: translateY(-50%);
-}
-
-.swiper-slide {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
